@@ -365,14 +365,15 @@ button:active {
 /* Responsividade básica para telas menores */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Reduzido */
     }
     .current-player-indicator {
-        font-size: 1.4rem;
+        font-size: 1.2rem; /* Reduzido */
     }
     .board {
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(12, 1fr);
+        /* Mantendo 4 colunas como solicitado */
+        grid-template-rows: repeat(12, 1fr); /* 12 linhas para 47 casas */
         grid-template-areas:
             "s0  s1  s2  s3"
             "s7  s6  s5  s4"
@@ -384,91 +385,57 @@ button:active {
             "s31 s30 s29 s28"
             "s32 s33 s34 s35"
             "s39 s38 s37 s36"
-            "s43 s42 s41 s40"
-            "s46 s45 s44 .";
-        gap: 8px;
-        padding: 15px;
+            "s40 s41 s42 s43" /* Corrigido para fluxo contínuo */
+            "s44 s45 s46 .";  /* Corrigido para fluxo contínuo */
+        gap: 5px; /* Reduzido drasticamente */
+        padding: 10px; /* Reduzido */
     }
 
-    /* Reajuste das grid-areas para 4 colunas em telas pequenas */
-    .square-0 { grid-area: s0; }
-    .square-1 { grid-area: s1; }
-    .square-2 { grid-area: s2; }
-    .square-3 { grid-area: s3; }
-    .square-4 { grid-area: s4; }
-    .square-5 { grid-area: s5; }
-    .square-6 { grid-area: s6; }
-    .square-7 { grid-area: s7; }
-    .square-8 { grid-area: s8; }
-    .square-9 { grid-area: s9; }
-    .square-10 { grid-area: s10; }
-    .square-11 { grid-area: s11; }
-    .square-12 { grid-area: s12; }
-    .square-13 { grid-area: s13; }
-    .square-14 { grid-area: s14; }
-    .square-15 { grid-area: s15; }
-    .square-16 { grid-area: s16; }
-    .square-17 { grid-area: s17; }
-    .square-18 { grid-area: s18; }
-    .square-19 { grid-area: s19; }
-    .square-20 { grid-area: s20; }
-    .square-21 { grid-area: s21; }
-    .square-22 { grid-area: s22; }
-    .square-23 { grid-area: s23; }
-    .square-24 { grid-area: s24; }
-    .square-25 { grid-area: s25; }
-    .square-26 { grid-area: s26; }
-    .square-27 { grid-area: s27; }
-    .square-28 { grid-area: s28; }
-    .square-29 { grid-area: s29; }
-    .square-30 { grid-area: s30; }
-    .square-31 { grid-area: s31; }
-    .square-32 { grid-area: s32; }
-    .square-33 { grid-area: s33; }
-    .square-34 { grid-area: s34; }
-    .square-35 { grid-area: s35; }
-    .square-36 { grid-area: s36; }
-    .square-37 { grid-area: s37; }
-    .square-38 { grid-area: s38; }
-    .square-39 { grid-area: s39; }
-    .square-40 { grid-area: s40; }
-    .square-41 { grid-area: s41; }
-    .square-42 { grid-area: s42; }
-    .square-43 { grid-area: s43; }
-    .square-44 { grid-area: s44; }
-    .square-45 { grid-area: s45; }
-    .square-46 { grid-area: s46; }
+    /* As grid-areas não precisam ser redeclaradas aqui se não mudam */
 
     .board-square {
-        font-size: 0.7rem;
-        padding: 8px;
+        font-size: 0.55rem; /* Reduzido drasticamente para caber o texto */
+        padding: 4px;      /* Reduzido drasticamente */
+        border-radius: 8px; /* Menor para telas pequenas */
     }
     .dice {
-        width: 70px;
-        height: 70px;
-        font-size: 3rem;
+        width: 60px;   /* Reduzido */
+        height: 60px;  /* Reduzido */
+        font-size: 2.5rem; /* Reduzido */
+        border-radius: 12px;
     }
     button {
-        padding: 10px 20px;
-        font-size: 1rem;
+        padding: 8px 16px; /* Reduzido */
+        font-size: 0.9rem; /* Reduzido */
     }
     .message-box {
-        font-size: 0.9rem;
-        padding: 15px 20px;
+        font-size: 0.8rem; /* Reduzido */
+        padding: 10px 15px; /* Reduzido */
     }
     .player-piece {
-        font-size: 1.5rem;
+        width: 20px; /* Reduzido */
+        height: 20px; /* Reduzido */
+        font-size: 1rem; /* Reduzido */
+    }
+    .edit-icon {
+        top: 2px;
+        right: 2px;
+        font-size: 0.6rem;
     }
 }
 
 @media (max-width: 480px) {
     .game-container {
-        padding: 20px;
+        padding: 10px; /* Reduzido */
     }
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduzido ainda mais */
     }
     .current-player-indicator {
-        font-size: 1.2rem;
+        font-size: 1rem; /* Reduzido ainda mais */
+    }
+    .board-square {
+        font-size: 0.45rem; /* Extremamente pequeno */
+        word-break: break-all; /* Força a quebra de palavras para evitar overflow */
     }
 } 

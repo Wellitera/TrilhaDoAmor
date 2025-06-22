@@ -231,7 +231,7 @@ h1 {
     }
 
     .board-square {
-        font-size: 0.75rem; /* Diminui a fonte para evitar compressão */
+        font-size: 0.7rem; /* Diminui ainda mais a fonte */
         padding: 5px;
     }
 

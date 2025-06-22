@@ -90,7 +90,6 @@ h1 {
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     padding: 8px;
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 .board-square:hover {
@@ -209,26 +208,22 @@ h1 {
     }
 
     .board {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(16, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(12, 1fr);
         gap: 8px;
         grid-template-areas:
-            "s0  s1  s2"
-            "s5  s4  s3"
-            "s6  s7  s8"
-            "s11 s10 s9"
-            "s12 s13 s14"
-            "s17 s16 s15"
-            "s18 s19 s20"
-            "s23 s22 s21"
-            "s24 s25 s26"
-            "s29 s28 s27"
-            "s30 s31 s32"
-            "s35 s34 s33"
-            "s36 s37 s38"
-            "s41 s40 s39"
-            "s42 s43 s44"
-            "s45 s46 .";
+            "s0  s1  s2  s3"
+            "s7  s6  s5  s4"
+            "s8  s9  s10 s11"
+            "s15 s14 s13 s12"
+            "s16 s17 s18 s19"
+            "s23 s22 s21 s20"
+            "s24 s25 s26 s27"
+            "s31 s30 s29 s28"
+            "s32 s33 s34 s35"
+            "s39 s38 s37 s36"
+            "s40 s41 s42 s43"
+            "s44 s45 s46 .";
     }
 
     .board-square {
@@ -253,20 +248,18 @@ h1 {
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
-        width: 95%;
-        max-width: 95%; /* Garante que não ultrapasse a tela */
-        font-size: 1rem;
-        padding: 12px;
+        width: 90%;
+        max-width: 450px;
     }
 
     .dice {
-        width: 75px;
-        height: 75px;
+        width: 80px;
+        height: 80px;
         font-size: 3rem;
     }
 
     .floating-controls button {
-        padding: 12px 18px;
-        font-size: 0.9rem;
+        padding: 10px 20px;
+        font-size: 1rem;
     }
 }

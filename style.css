@@ -13,6 +13,9 @@ body {
     padding: 20px;
     box-sizing: border-box;
     color: #fce4ec; /* Cor do texto principal, suave e elegante */
+    position: relative; /* Para que o z-index funcione se precisarmos */
+    z-index: 1; /* Para garantir que o conteúdo esteja acima do fundo */
+    padding-bottom: 100px; /* Adiciona espaço no final para não sobrepor elementos fixos */
 }
 
 /* Container principal do jogo */
@@ -306,17 +309,22 @@ h1 {
 
 /* Caixa de mensagens */
 .message-box {
-    background-color: #4a007b;
+    position: fixed; /* MANTÉM A CAIXA VISÍVEL */
+    bottom: 20px;
+    left: 20px;
+    width: auto; /* Largura automática */
+    max-width: 450px; /* Largura máxima */
+    z-index: 99; /* Fica abaixo dos controles principais */
+
+    background-color: rgba(74, 0, 123, 0.9); /* Fundo com leve transparência */
+    backdrop-filter: blur(5px); /* Efeito de vidro fosco */
     color: #ffe6f2;
     padding: 20px 25px;
     border-radius: 15px;
     border: 2px solid #ffcee9;
     text-align: center;
     font-size: 1.1rem;
-    width: 100%;
-    max-width: 650px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    margin-top: 25px;
     min-height: 70px;
     display: flex;
     align-items: center;
@@ -447,6 +455,8 @@ h1 {
 @media (max-width: 800px) { /* Ponto de quebra um pouco maior para acomodar 3 colunas confortavelmente */
     body {
         padding: 10px;
+        /* Espaço final para acomodar os 2 menus flutuantes */
+        padding-bottom: 200px; 
     }
 
     h1 {
@@ -490,7 +500,7 @@ h1 {
     }
     
     .floating-controls {
-        bottom: 10px;
+        bottom: 100px; /* SOBE para dar espaço para a message-box */
         /* Centraliza os controles no mobile */
         left: 50%;
         transform: translateX(-50%);
@@ -515,8 +525,13 @@ h1 {
         font-size: 0.8rem;
     }
     .message-box {
-        font-size: 1rem;
+        /* Centraliza no mobile */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        bottom: 15px; /* Posição na base da tela */
         padding: 15px;
+        font-size: 0.9rem;
     }
     .player-piece {
         width: 24px;

@@ -231,7 +231,8 @@ h1 {
     }
 
     .board-square {
-        font-size: 0.75rem; /* Mais legível */
+        font-size: 0.85rem; /* Aumenta a fonte para melhor legibilidade */
+        padding: 5px; /* Ajusta o padding para dar mais espaço ao texto */
     }
 
     /* Centraliza e empilha os controles no mobile */
@@ -257,13 +258,14 @@ h1 {
     }
 
     .dice {
-        width: 80px;
-        height: 80px;
-        font-size: 3rem;
+        width: 60px;      /* Diminui o dado */
+        height: 60px;     /* Diminui o dado */
+        font-size: 2.5rem;  /* Diminui o número do dado */
+        border-radius: 15px; /* Suaviza a borda do dado */
     }
 
     .floating-controls button {
-        padding: 10px 20px;
-        font-size: 1rem;
+        padding: 8px 16px; /* Diminui o botão */
+        font-size: 0.9rem;   /* Diminui a fonte do botão */
     }
 }

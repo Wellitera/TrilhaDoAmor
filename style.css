@@ -438,4 +438,28 @@ button:active {
         font-size: 0.45rem; /* Extremamente pequeno */
         word-break: break-all; /* Força a quebra de palavras para evitar overflow */
     }
+}
+
+@media (max-width: 800px) { /* Ponto de quebra um pouco maior para acomodar 3 colunas confortavelmente */
+    body {
+        padding: 10px;
+    }
+
+    .board {
+        gap: 10px;
+    }
+
+    .dice {
+        width: 65px;   /* Reduzido */
+        height: 65px;  /* Reduzido */
+        font-size: 2.5rem; /* Reduzido */
+        border-radius: 12px;
+    }
+    button {
+        padding: 10px 20px; /* Reduzido */
+        font-size: 0.9rem;  /* Reduzido */
+    }
+    .message-box {
+        font-size: 1rem;
+    }
 } 

@@ -1,0 +1,474 @@
+/* Estilos globais para uma aparência moderna e sedutora */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Gradiente roxo profundo original - Efeito de fogo removido */
+    background: linear-gradient(135deg, #2c003e 0%, #4a007b 100%);
+    /* Propriedades de background do efeito de fogo removidas */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fce4ec; /* Cor do texto principal, suave e elegante */
+}
+
+/* Container principal do jogo */
+.game-container {
+    background-color: #3b005e; /* Fundo mais escuro para o container */
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Sombra mais intensa para profundidade */
+    padding: 40px;
+    max-width: 950px; /* Largura máxima maior */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    border: 2px solid #6a008c; /* Borda sutil para definir o container */
+    position: relative; /* Para que o z-index funcione se precisarmos */
+    z-index: 1; /* Para garantir que o conteúdo esteja acima do fundo */
+}
+
+/* Título do jogo */
+h1 {
+    font-family: 'Playfair Display', serif; /* Fonte mais elegante para o título */
+    font-size: 3.5rem;
+    color: #ffb3e2; /* Rosa claro vibrante */
+    text-shadow: 0 4px 8px rgba(255, 179, 226, 0.3); /* Sombra suave para o texto */
+    margin-bottom: 15px;
+    letter-spacing: 1px; /* Espaçamento entre letras para elegância */
+}
+
+/* Indicador do jogador atual */
+.current-player-indicator {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffcee9; /* Rosa mais suave */
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tabuleiro do jogo - Novo layout de cobra */
+.board {
+    display: grid;
+    /* Definindo 6 colunas e 8 linhas explicitamente para acomodar todas as casas */
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr); /* 8 linhas para 47 casas (0-46) */
+    gap: 10px; /* Espaçamento entre as casas */
+    width: 100%;
+    max-width: 850px; /* Largura máxima para o tabuleiro */
+    background: linear-gradient(145deg, #6a008c, #8300a7); /* Gradiente para o fundo do tabuleiro */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombras para profundidade */
+    border: 2px solid #b39ddb; /* Borda decorativa */
+
+    /* Definindo as áreas do grid para o layout de cobra */
+    grid-template-areas:
+        "s0  s1  s2  s3  s4  s5"
+        "s11 s10 s9  s8  s7  s6"
+        "s12 s13 s14 s15 s16 s17"
+        "s23 s22 s21 s20 s19 s18"
+        "s24 s25 s26 s27 s28 s29"
+        "s35 s34 s33 s32 s31 s30"
+        "s36 s37 s38 s39 s40 s41"
+        "s42 s43 s44 s45 s46 ."; /* ALINHADO: s42 começa na primeira coluna */
+}
+
+/* Estilo base para cada casa do tabuleiro */
+.board-square {
+    width: 100%;
+    padding-bottom: 100%; /* Mantém a proporção 1:1 */
+    position: relative;
+    background: linear-gradient(45deg, #a7499f, #d156b8); /* Gradiente base da casa */
+    border: 2px solid #f8e8f8; /* Borda clara */
+    border-radius: 15px; /* Raio padrão para todos os cantos - SEMPRE RETO */
+    display: flex;
+    flex-direction: column; /* Para empilhar o lápis e o texto */
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #ffffff; /* Texto branco */
+    text-align: center;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para as casas */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background 0.3s ease; /* Transições suaves */
+    cursor: default; /* Removido cursor: pointer; para o bloco inteiro não ser o gatilho de edição */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Sombra para o texto */
+    padding: 10px; /* Más espacio interno */
+    overflow: hidden; /* Garante que o conteúdo não vaze */
+}
+
+.board-square:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #d156b8, #a7499f);
+}
+
+/* Posicionamento das casas usando grid-area */
+/* Linha 1: da esquerda para a direita */
+.square-0 { grid-area: s0; }
+.square-1 { grid-area: s1; }
+.square-2 { grid-area: s2; }
+.square-3 { grid-area: s3; }
+.square-4 { grid-area: s4; }
+.square-5 { grid-area: s5; }
+
+/* Linha 2: da direita para a esquerda */
+.square-6 { grid-area: s6; }
+.square-7 { grid-area: s7; }
+.square-8 { grid-area: s8; }
+.square-9 { grid-area: s9; }
+.square-10 { grid-area: s10; }
+.square-11 { grid-area: s11; }
+
+/* Linha 3: da esquerda para a direita */
+.square-12 { grid-area: s12; }
+.square-13 { grid-area: s13; }
+.square-14 { grid-area: s14; }
+.square-15 { grid-area: s15; }
+.square-16 { grid-area: s16; }
+.square-17 { grid-area: s17; }
+
+/* Linha 4: da direita para a esquerda */
+.square-18 { grid-area: s18; }
+.square-19 { grid-area: s19; }
+.square-20 { grid-area: s20; }
+.square-21 { grid-area: s21; }
+.square-22 { grid-area: s22; }
+.square-23 { grid-area: s23; }
+
+/* Linha 5: da esquerda para a direita */
+.square-24 { grid-area: s24; }
+.square-25 { grid-area: s25; }
+.square-26 { grid-area: s26; }
+.square-27 { grid-area: s27; }
+.square-28 { grid-area: s28; }
+.square-29 { grid-area: s29; }
+
+/* Nova Linha 6: da direita para a esquerda */
+.square-30 { grid-area: s30; }
+.square-31 { grid-area: s31; }
+.square-32 { grid-area: s32; }
+.square-33 { grid-area: s33; }
+.square-34 { grid-area: s34; }
+.square-35 { grid-area: s35; }
+
+/* Nova Linha 7: da esquerda para a direita */
+.square-36 { grid-area: s36; }
+.square-37 { grid-area: s37; }
+.square-38 { grid-area: s38; }
+.square-39 { grid-area: s39; }
+
+/* Nova Linha 8: da direita para a esquerda (para as casas extras) */
+.square-40 { grid-area: s40; }
+.square-41 { grid-area: s41; }
+.square-42 { grid-area: s42; }
+.square-43 { grid-area: s43; }
+.square-44 { grid-area: s44; }
+.square-45 { grid-area: s45; }
+.square-46 { grid-area: s46; }
+
+
+/* Cores e estilos especiais para casas de ação/início/fim (inspiradas na imagem) */
+.start-square {
+    background: linear-gradient(45deg, #a7f3d0, #34d399);
+    border-color: #baffd9;
+    color: #1a5e4d;
+}
+
+.end-square {
+    background: linear-gradient(45deg, #fca5a5, #ef4444);
+    border-color: #ffdce5;
+    color: #7a0033;
+}
+
+.action-square-red {
+    background: linear-gradient(45deg, #ff4c4c, #c00000);
+    border-color: #f8d0d0;
+    color: white;
+}
+
+.action-square-orange {
+    background: linear-gradient(45deg, #fed7aa, #fb923c);
+    border-color: #ffe6d3;
+    color: #9a3412;
+}
+
+.action-square-green {
+    background: linear-gradient(45deg, #a7f3d0, #34d399);
+    border-color: #baffd9;
+    color: #1a5e4d;
+}
+
+.action-square-purple {
+    background: linear-gradient(45deg, #fbcfe8, #e879f9);
+    border-color: #fde8ff;
+    color: #831843;
+}
+
+/* Peças dos jogadores - ajustadas para serem pequenas e no canto inferior */
+.player-piece {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.player-1 {
+    background: radial-gradient(circle at top left, #ff4c4c, #c00000);
+    color: white;
+    border: 2px solid #f8d0d0;
+    bottom: 5px; /* Posição no canto inferior */
+    left: 5px;  /* Posição no canto esquerdo */
+}
+
+.player-2 {
+    background: radial-gradient(circle at top left, #4c8cff, #004dc0);
+    color: white;
+    border: 2px solid #d0e8ff;
+    bottom: 5px; /* Posição no canto inferior */
+    right: 5px; /* Posição no canto direito */
+}
+
+/* Controles flutuantes */
+.floating-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 100; /* Garante que fique acima de todo o resto */
+}
+
+/* Dado */
+.dice {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #e0e0e0, #ffffff);
+    border: 4px solid #b0b0b0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; /* Ajustado para melhor visualização dos pontos */
+    font-weight: bold;
+    color: #333; /* Cor dos pontos */
+    box-shadow: inset  0 0 15px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Botão Lançar Dado */
+button {
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 35px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.8);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+/* Caixa de mensagens */
+.message-box {
+    background-color: #4a007b;
+    color: #ffe6f2;
+    padding: 20px 25px;
+    border-radius: 15px;
+    border: 2px solid #ffcee9;
+    text-align: center;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 25px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+/* Estilo para o span editável */
+.board-square span {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    word-break: break-word;
+    cursor: default;
+}
+
+.board-square span:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilo para o ícone de lápis */
+.edit-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    z-index: 11;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 5px;
+    transition: color 0.2s ease;
+}
+
+.edit-icon:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Classes de curva removidas, apenas border-radius padrão de 15px */
+
+
+/* Responsividade básica para telas menores */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    .current-player-indicator {
+        font-size: 1.4rem;
+    }
+    .board {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+        grid-template-areas:
+            "s0  s1  s2  s3"
+            "s7  s6  s5  s4"
+            "s8  s9  s10 s11"
+            "s15 s14 s13 s12"
+            "s16 s17 s18 s19"
+            "s23 s22 s21 s20"
+            "s24 s25 s26 s27"
+            "s31 s30 s29 s28"
+            "s32 s33 s34 s35"
+            "s39 s38 s37 s36"
+            "s43 s42 s41 s40"
+            "s46 s45 s44 .";
+        gap: 8px;
+        padding: 15px;
+    }
+
+    /* Reajuste das grid-areas para 4 colunas em telas pequenas */
+    .square-0 { grid-area: s0; }
+    .square-1 { grid-area: s1; }
+    .square-2 { grid-area: s2; }
+    .square-3 { grid-area: s3; }
+    .square-4 { grid-area: s4; }
+    .square-5 { grid-area: s5; }
+    .square-6 { grid-area: s6; }
+    .square-7 { grid-area: s7; }
+    .square-8 { grid-area: s8; }
+    .square-9 { grid-area: s9; }
+    .square-10 { grid-area: s10; }
+    .square-11 { grid-area: s11; }
+    .square-12 { grid-area: s12; }
+    .square-13 { grid-area: s13; }
+    .square-14 { grid-area: s14; }
+    .square-15 { grid-area: s15; }
+    .square-16 { grid-area: s16; }
+    .square-17 { grid-area: s17; }
+    .square-18 { grid-area: s18; }
+    .square-19 { grid-area: s19; }
+    .square-20 { grid-area: s20; }
+    .square-21 { grid-area: s21; }
+    .square-22 { grid-area: s22; }
+    .square-23 { grid-area: s23; }
+    .square-24 { grid-area: s24; }
+    .square-25 { grid-area: s25; }
+    .square-26 { grid-area: s26; }
+    .square-27 { grid-area: s27; }
+    .square-28 { grid-area: s28; }
+    .square-29 { grid-area: s29; }
+    .square-30 { grid-area: s30; }
+    .square-31 { grid-area: s31; }
+    .square-32 { grid-area: s32; }
+    .square-33 { grid-area: s33; }
+    .square-34 { grid-area: s34; }
+    .square-35 { grid-area: s35; }
+    .square-36 { grid-area: s36; }
+    .square-37 { grid-area: s37; }
+    .square-38 { grid-area: s38; }
+    .square-39 { grid-area: s39; }
+    .square-40 { grid-area: s40; }
+    .square-41 { grid-area: s41; }
+    .square-42 { grid-area: s42; }
+    .square-43 { grid-area: s43; }
+    .square-44 { grid-area: s44; }
+    .square-45 { grid-area: s45; }
+    .square-46 { grid-area: s46; }
+
+    .board-square {
+        font-size: 0.7rem;
+        padding: 8px;
+    }
+    .dice {
+        width: 70px;
+        height: 70px;
+        font-size: 3rem;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    .message-box {
+        font-size: 0.9rem;
+        padding: 15px 20px;
+    }
+    .player-piece {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .current-player-indicator {
+        font-size: 1.2rem;
+    }
+} 
